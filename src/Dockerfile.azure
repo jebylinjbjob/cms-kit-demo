@@ -20,4 +20,6 @@ COPY --from=base /src/CmsKitDemo/CmsKitDemoDb/CmsKitDemo.db /app/CmsKitDemoDb/Cm
 EXPOSE 80
 ENV ASPNETCORE_URLS=http://+:80
 COPY --from=base /src/CmsKitDemo/bin/Release/publish .
-ENTRYPOINT ["dotnet", "CmsKitDemo.dll"]
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]
